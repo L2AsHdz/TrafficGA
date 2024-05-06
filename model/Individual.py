@@ -26,7 +26,7 @@ class Individual:
         return self.__outgoing_total
 
     def get_aptitude(self):
-        return self.__aptitude
+        return round((self.__aptitude / 100), 2)
 
     def generate_genes(self):
         for node in self.__chromosome:
@@ -72,3 +72,10 @@ class Individual:
 
         string += ", Aptitude: " + str(self.__aptitude) + " }"
         return string
+
+    def copy(self):
+        new_individual = Individual(self.__chromosome, self.__edges)
+        new_individual.set_incoming_total(self.__incoming_total)
+        new_individual.set_outgoing_total(self.__outgoing_total)
+        new_individual.set_aptitude(self.__aptitude)
+        return new_individual

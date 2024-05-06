@@ -40,7 +40,6 @@ class FitnessService:
                                                  individual.get_chromosome()))
                             nodes_to_operate.append(result[0])
 
-                print("Nodo " + str(node.get_number()) + " operado")
             # Si no, agregar nodo al final de la lista
             else:
                 nodes_to_operate.append(node)
