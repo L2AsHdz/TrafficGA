@@ -1,7 +1,13 @@
 from service.InitialPopulationService import InitialPopulationService
 from service.ScrambleMutationService import ScrambleMutationService
+from service.crossover.ComplementaryMaskCrossoverService import ComplementaryOrMaskCrossoverService
+from service.crossover.DoubleMaskCrossoverService import DoubleOrMaskCrossoverService
+from service.crossover.MultiPointCrossoverService import MultiPointCrossoverService
+from service.crossover.RandomCrossoverService import RandomCrossoverServiceOr
 from service.crossover.SinglePointCrossoverService import SinglePointCrossoverService
 from service.selection.RankingSelectionService import RankingSelectionService
+from service.selection.RouletteSelectionService import RouletteSelectionService
+from service.selection.TournamentSelectionService import TournamentSelectionService
 
 
 class GeneticAlgorithmService:
@@ -38,6 +44,8 @@ class GeneticAlgorithmService:
             print("Generacion " + str(self.__current_generation))
 
             # Seleccionar padres
+            tournament_selection = TournamentSelectionService(population, self.__population_size, 3)
+            roulette_selection = RouletteSelectionService(population, self.__population_size)
             selection_service = RankingSelectionService(population, self.__population_size)
             parents = selection_service.select_parents()
 
@@ -47,6 +55,10 @@ class GeneticAlgorithmService:
                 print("")
 
             # Cruce
+            multipoint_crossover  = MultiPointCrossoverService(parents)
+            random_crossover = RandomCrossoverServiceOr(parents)
+            complementary_mask_crossover = ComplementaryOrMaskCrossoverService(parents, "XYYX")
+            double_mask_crossover = DoubleOrMaskCrossoverService(parents, "XYXY", "XYYX")
             crossover_service = SinglePointCrossoverService(parents)
             children = crossover_service.cross_parents()
 
@@ -68,7 +80,8 @@ class GeneticAlgorithmService:
             self.__best_individual = max(mutated_population, key=lambda x: x.get_aptitude())
             self.__worst_individual = min(mutated_population, key=lambda x: x.get_aptitude())
 
-            self.__view.add_row(self.__current_generation,
+            if self.__view:
+                self.__view.add_row(self.__current_generation,
                             self.__best_individual.get_aptitude(), str(self.__best_individual))
 
             self.__current_generation += 1
@@ -83,3 +96,4 @@ class GeneticAlgorithmService:
         print("Peor individuo")
         print(self.__worst_individual)
         print("")
+

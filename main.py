@@ -112,11 +112,11 @@ if __name__ == '__main__':
 # edges.append(output2)
 #
 # # Parametros iniciales
-# population_size = 200
-# no_mutations = 30
-# mutated_generations = 40
-# limit_generations = 400
-# minimum_aptitude = 0.32
+# population_size = 20
+# no_mutations = 3
+# mutated_generations = 4
+# limit_generations = 20
+# minimum_aptitude = 0.35
 #
 # config = Configuration()
 # config.set_population_size(population_size)
@@ -127,7 +127,7 @@ if __name__ == '__main__':
 # config.set_chromosome(nodes)
 # config.set_edges(edges)
 #
-# ag_service = GeneticAlgorithmService(config)
+# ag_service = GeneticAlgorithmService(config, None)
 # ag_service.start()
 
 

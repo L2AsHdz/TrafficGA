@@ -1,8 +1,9 @@
 import random
 from service.FitnessService import FitnessService
+from service.crossover.CrossoverServiceBase import CrossoverServiceBase
 
 
-class SinglePointCrossoverService:
+class SinglePointCrossoverService(CrossoverServiceBase):
 
     def __init__(self, parents):
         self.__parents = parents
@@ -16,18 +17,18 @@ class SinglePointCrossoverService:
 
             crossover_point = random.randint(1, len(parent1.get_chromosome()) - 1)
 
-            child1 = self.__create_child(parent1, parent2, crossover_point)
-            child2 = self.__create_child(parent2, parent1, crossover_point)
+            child1 = self.__create_child_(parent1, parent2, crossover_point)
+            child2 = self.__create_child_(parent2, parent1, crossover_point)
 
-            self.__recalculate_fitness(child1, fitness_service)
-            self.__recalculate_fitness(child2, fitness_service)
+            self.recalculate_fitness(child1, fitness_service)
+            self.recalculate_fitness(child2, fitness_service)
 
             children.append(child1)
             children.append(child2)
 
         return children
 
-    def __create_child(self, parent1, parent2, crossover_point):
+    def __create_child_(self, parent1, parent2, crossover_point):
         chromosome1 = parent1.get_chromosome()
         chromosome2 = parent2.get_chromosome()
 
@@ -37,9 +38,3 @@ class SinglePointCrossoverService:
         child.set_chromosome(child_chromosome)
 
         return child
-
-    def __recalculate_fitness(self, child, fitness_service):
-        in_total, out_total, fitness = fitness_service.calculate_fitness(child)
-        child.set_incoming_total(in_total)
-        child.set_outgoing_total(out_total)
-        child.set_aptitude(fitness)
