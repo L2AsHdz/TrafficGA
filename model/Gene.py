@@ -10,7 +10,7 @@ class Gene:
         self.__percents = percents
 
     def __str__(self):
-        string = "Percents: ["
+        string = "["
 
         for i in range(len(self.__percents)):
             string += str(self.__percents[i])

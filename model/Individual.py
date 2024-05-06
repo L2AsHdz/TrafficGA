@@ -65,12 +65,10 @@ class Individual:
         self.__aptitude = aptitude
 
     def __str__(self):
-        string = "Individual { Chromosome:"
+        string = ""
 
         for node in self.__chromosome:
             string += " " + str(node)
-
-        string += ", Aptitude: " + str(self.__aptitude) + " }"
         return string
 
     def copy(self):
