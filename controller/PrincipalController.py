@@ -1,3 +1,5 @@
+import threading
+
 from service.GeneticAlgorithmService import GeneticAlgorithmService
 
 
@@ -13,6 +15,10 @@ class PrincipalController:
             print(configuration)
 
             ag_service = GeneticAlgorithmService(configuration, self.view)
+
+            # thread = threading.Thread(target=ag_service.start)
+            # thread.start()
+
             ag_service.start()
 
             # save the model

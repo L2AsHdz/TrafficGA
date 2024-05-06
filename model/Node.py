@@ -47,6 +47,11 @@ class Node:
     def __str__(self):
         return "N" + str(self.__number) + ": " + str(self.__gene)
 
+    def to_string(self):
+        return "{ Node " + str(self.__number) + ": " + str(self.__gene) + \
+                  " Incoming edges: " + str(len(self.__incoming_edges)) + \
+                  " Outgoing edges: " + str(len(self.__outgoing_edges)) + " } "
+
     def copy(self):
         return Node(self.__number, self.__gene.copy(), self.__incoming_edges.copy(),
                     self.__outgoing_edges.copy())

@@ -29,45 +29,99 @@ class PrincipalView(ttk.Frame):
         self.label = ttk.Label(self, text='Population Size:')
         self.label.grid(row=0, column=0, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
 
-        self.population_var = tk.IntVar()
+        self.population_var = tk.IntVar(value=100)
         self.population_entry = ttk.Entry(self, textvariable=self.population_var, width=15)
-        self.population_entry.insert(0, str(10))
         self.population_entry.grid(row=0, column=1, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
 
         # No Mutations
         self.label_1 = ttk.Label(self, text='No Mutations:')
         self.label_1.grid(row=1, column=0, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
 
-        self.no_mutations_var = tk.IntVar()
+        self.no_mutations_var = tk.IntVar(value=5)
         self.no_mutations_entry = ttk.Entry(self, textvariable=self.no_mutations_var, width=15)
-        self.no_mutations_entry.insert(0, str(1))
         self.no_mutations_entry.grid(row=1, column=1, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
 
         # Each Generations
         self.label_2 = ttk.Label(self, text='Each Generations:')
         self.label_2.grid(row=2, column=0, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
 
-        self.each_generations_var = tk.IntVar()
+        self.each_generations_var = tk.IntVar(value=10)
         self.each_generations_entry = ttk.Entry(self, textvariable=self.each_generations_var, width=15)
-        self.each_generations_entry.insert(0, str(3))
         self.each_generations_entry.grid(row=2, column=1, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
 
         # Limit Generations
-        self.label_2 = ttk.Label(self, text='Limit Generations:')
-        self.label_2.grid(row=3, column=0, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
+        self.label_3 = ttk.Label(self, text='Limit Generations:')
+        self.label_3.grid(row=3, column=0, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
 
-        self.limit_generations_var = tk.IntVar()
+        self.limit_generations_var = tk.IntVar(value=400)
         self.limit_generations_entry = ttk.Entry(self, textvariable=self.limit_generations_var, width=15)
-        self.limit_generations_entry.insert(0, str(20))
         self.limit_generations_entry.grid(row=3, column=1, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
 
         # Minimum Aptitude
-        self.label_2 = ttk.Label(self, text='Minimum Aptitude:')
-        self.label_2.grid(row=4, column=0, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
+        self.label_4 = ttk.Label(self, text='Minimum Aptitude:')
+        self.label_4.grid(row=4, column=0, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
 
         self.min_aptitude_var = tk.DoubleVar(value=0.4)
         self.min_aptitude_entry = ttk.Entry(self, textvariable=self.min_aptitude_var, width=15)
         self.min_aptitude_entry.grid(row=4, column=1, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
+
+        # Selection Type
+        self.label_5 = ttk.Label(self, text='Tipo Seleccion:')
+        self.label_5.grid(row=5, column=0, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
+
+        options_selection = [
+            "Ranking",
+            "Tournament",
+            "Roulette"
+        ]
+
+        self.selection_type_var = tk.StringVar()
+        self.selection_type_entry = ttk.Combobox(self, textvariable=self.selection_type_var, width=15,
+                                                 values=options_selection)
+        self.selection_type_entry.current(0)
+        self.selection_type_entry.grid(row=5, column=1, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
+
+        # get_tournament_size
+        self.label_6 = ttk.Label(self, text='Tournament Size:')
+        self.label_6.grid(row=6, column=0, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
+
+        self.tournament_size_var = tk.IntVar(value=3)
+        self.tournament_size_entry = ttk.Entry(self, textvariable=self.tournament_size_var, width=15)
+        self.tournament_size_entry.grid(row=6, column=1, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
+
+        # Crossover Type
+        self.label_7 = ttk.Label(self, text='Tipo Cruce:')
+        self.label_7.grid(row=7, column=0, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
+
+        options_crossover = [
+            "SinglePoint",
+            "MultiPoint",
+            "Random",
+            "ComplementaryMask",
+            "DoubleMask"
+        ]
+
+        self.crossover_type_var = tk.StringVar()
+        self.crossover_type_entry = ttk.Combobox(self, textvariable=self.crossover_type_var, width=15,
+                                                 values=options_crossover)
+        self.crossover_type_entry.current(0)
+        self.crossover_type_entry.grid(row=7, column=1, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
+
+        # mask 1
+        self.label_8 = ttk.Label(self, text='MASK 1:')
+        self.label_8.grid(row=8, column=0, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
+
+        self.mask_var = tk.StringVar(value="XYYX")
+        self.mask_entry = ttk.Entry(self, textvariable=self.mask_var, width=15)
+        self.mask_entry.grid(row=8, column=1, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
+
+        # mask 2
+        self.label_9 = ttk.Label(self, text='MASK 2:')
+        self.label_9.grid(row=9, column=0, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
+
+        self.mask_2_var = tk.StringVar(value="XYXY")
+        self.mask_2_entry = ttk.Entry(self, textvariable=self.mask_2_var, width=15)
+        self.mask_2_entry.grid(row=9, column=1, columnspan=1, sticky='N,E,S,W,NE,NW,SE,SW')
 
         self.save_button = ttk.Button(self, text='Add Input', command=self.enable_add_input)
         self.save_button.grid(row=1, column=3, columnspan=2, sticky='N,E,S,W,NE,NW,SE,SW')
@@ -84,11 +138,11 @@ class PrincipalView(ttk.Frame):
         self.save_button = ttk.Button(self, text='Start', command=self.save_button_clicked)
         self.save_button.grid(row=3, column=3, columnspan=2, sticky='N,E,S,W,NE,NW,SE,SW')
 
-        self.save_button = ttk.Button(self, text='Stop', command=self.save_button_clicked)
+        self.save_button = ttk.Button(self, text='Clean', command=self.limpiar_treeview)
         self.save_button.grid(row=3, column=4, columnspan=2, sticky='N,E,S,W,NE,NW,SE,SW')
 
         self.canvas = tk.Canvas(self, width=1000, height=600, bg='white')
-        self.canvas.grid(row=6, column=0, columnspan=4, pady=15, sticky='E,S,W,NE,NW,SE,SW')
+        self.canvas.grid(row=10, column=0, columnspan=4, pady=15, sticky='E,S,W,NE,NW,SE,SW')
 
         # bold_font = ("Helvetica", 24, "bold")
         #
@@ -99,7 +153,6 @@ class PrincipalView(ttk.Frame):
         self.tree['columns'] = ('column1', 'column2', 'column3')
 
         # Configurar las columnas
-        self.tree.heading('#0', text='ID')
         self.tree.heading('column1', text='Generacion')
         self.tree.heading('column2', text='Eficiencia')
         self.tree.heading('column3', text='Porcentajes')
@@ -110,12 +163,15 @@ class PrincipalView(ttk.Frame):
         self.tree.column('column2', width=100)
         self.tree.column('column3', width=600)
 
-        self.tree.grid(row=6, column=5, columnspan=6, pady=15, sticky='E,S,W,NE,NW,SE,SW')
+        self.tree.grid(row=10, column=5, columnspan=6, pady=15, sticky='E,S,W,NE,NW,SE,SW')
 
         self.canvas.bind('<Button-1>', self.canvas_on_click)
 
     def add_row(self, gen, aptitude, percentages):
-        self.tree.insert('', 'end', text=gen, values=(gen, aptitude, percentages))
+        self.tree.insert('', 'end', values=(gen, aptitude, percentages))
+
+    def limpiar_treeview(self):
+        self.tree.delete(*self.tree.get_children())
 
     def set_controller(self, controller):
         self.controller = controller
@@ -132,6 +188,11 @@ class PrincipalView(ttk.Frame):
             self.__configuration.set_minimum_aptitude(self.min_aptitude_var.get())
             self.__configuration.set_chromosome(self.nodes)
             self.__configuration.set_edges(self.edges)
+            self.__configuration.set_selection_type(self.selection_type_var.get())
+            self.__configuration.set_tournament_size(self.tournament_size_var.get())
+            self.__configuration.set_crossover_type(self.crossover_type_var.get())
+            self.__configuration.set_mask(self.mask_var.get())
+            self.__configuration.set_mask_2(self.mask_2_var.get())
             self.controller.save(self.__configuration)
 
     def enable_add_input(self):
@@ -184,6 +245,14 @@ class PrincipalView(ttk.Frame):
         else:
             node = self.find_node__at_position(event.x, event.y)
             self.highlight_node(node)
+
+        for node in self.nodes:
+            print(node.to_string())
+
+        for edge in self.edges:
+            print(edge)
+
+        print("")
 
     def find_node__at_position(self, x, y):
         clicked_item = self.canvas.find_closest(x, y)
@@ -239,7 +308,7 @@ class PrincipalView(ttk.Frame):
             self.edges.append(new_edge)
             self.current_node.get_outgoing_edges().append(arrow_id)
             self.show_label(x+25, y, "MAX: " + str(max_capacity))
-            self.show_label(x+25, y+25, "MIN: " + str(min_capacity))
+            self.show_label(x+25, y+25, "MIN: " + str(min_capacity)+ "%")
         else:
             print("No hay un nodo seleccionado para conectar.")
 
@@ -257,7 +326,7 @@ class PrincipalView(ttk.Frame):
             self.current_node.get_outgoing_edges().append(arrow_id)
             x_medio, y_medio = self.calcular_punto_medio(start_x, start_y, end_x, end_y)
             self.show_label(x_medio, y_medio+20, "MAX: " + str(max_capacity))
-            self.show_label(x_medio, y_medio+45, "MIN: " + str(min_capacity))
+            self.show_label(x_medio, y_medio+45, "MIN: " + str(min_capacity) + "%")
 
             node.get_incoming_edges().append(arrow_id)
             new_edge.set_input_node(node.get_number())

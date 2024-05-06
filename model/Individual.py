@@ -71,6 +71,13 @@ class Individual:
             string += " " + str(node)
         return string
 
+    def to_string(self):
+        string = ""
+
+        for node in self.__chromosome:
+            string += " " + str(node.to_string())
+        return string
+
     def copy(self):
         new_individual = Individual(self.__chromosome, self.__edges)
         new_individual.set_incoming_total(self.__incoming_total)

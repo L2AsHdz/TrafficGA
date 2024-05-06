@@ -14,6 +14,6 @@ class ScrambleMutationService:
         for index in indexes:
             individual = self.__population[index]
             individual.generate_genes()
-            print("Individuo " + str(index + 1) + " mutado")
+            # print("Individuo " + str(index + 1) + " mutado")
 
         return self.__population
